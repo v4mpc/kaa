@@ -3,10 +3,13 @@
     "name": "Kaa",
     "version": "0.1",
     "description": "An Extension that helps to Valuate Vehicles",
+    "permissions": [
+        "tabs"
+    ],
     "content_scripts": [
         {
             "matches": [
-                "<all_urls>"
+                "http://127.0.0.1/*"
             ],
             "js": [
                 "content.js"
