@@ -60,17 +60,29 @@ def get_model_value(dict_of_features, search, chassis):
     #     TODO: if filtered_model_name length == 1 then return
 
     filtered_chassis_name = []
-    found_chassis = re.search(r'([a-z]+\d+)', chassis, re.I)
+    filtered_chassis_alphabets = []
+    filtered_chassis_numbers = []
+    found_chassis = re.search(r'([a-z]+)(\d+)', chassis, re.I)
     if found_chassis:
-        found_chassis_number = found_chassis.group(1)
-        print(found_chassis_number)
+        found_chassis_letter = found_chassis.group(1)
+        found_chassis_number = found_chassis.group(2)
+
         for feature in filtered_model_name:
             if re.search(found_chassis_number, feature['text'], re.I):
-                print('its appending')
-                filtered_chassis_name.append(feature)
+                filtered_chassis_numbers.append(feature)
 
-    if len(filtered_chassis_name) > 0:
-        return filtered_chassis_name[0]['value']
+        if len(filtered_chassis_numbers) > 0:
+            for feature in filtered_chassis_numbers:
+                if re.search(found_chassis_letter, feature['text'], re.I):
+                    filtered_chassis_alphabets.append(feature)
+
+        else:
+            for feature in filtered_model_name:
+                if re.search(found_chassis_letter, feature['text'], re.I):
+                    filtered_chassis_alphabets.append(feature)
+
+    if len(filtered_chassis_alphabets) > 0:
+        return filtered_chassis_alphabets[0]['value']
     return filtered_model_name[0]['value']
 
 
