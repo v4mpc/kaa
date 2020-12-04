@@ -76,7 +76,8 @@ def get_car_props(url):
     'engine':extract_engine(car),
     'price':extract_price(car),
     'body':extract_body(car),
-    'image':extract_image(car)  
+    'image':extract_image(car),
+    'chassis':extract_chassis(car)
     }
     
 def extract_image(car):
@@ -105,7 +106,10 @@ def extract_year(car):
     return car['manufactureyearmonth'].split('/')[0]
 
 def extract_engine(car):
-    return re.sub(r',|c','',car['enginesize'])  
+    return re.sub(r',|c','',car['enginesize'])
+
+def extract_chassis(car):
+    return car['chassis'];
 
 def extract_fuel(car):
     return car['fuel']
