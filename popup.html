@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" ng-app="my-app">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="angular.min.js"></script>
+    <script src="popup.js"></script>
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container" ng-controller="PopupCtrl">
+        <h5 class="card-title">
+            <!-- {{result.model}} -->
+            1 + 2 = {{1 + 2}}</h5>
+        <table class="table table-bordered table-sm">
+
+            <tbody *ngIf="result; else noresult">
+                <tr>
+                    <td rowspan="8" class="text-primary"><strong>SPECS</strong></td>
+                    <td class="text-muted">Make</td>
+                    <td>
+                        <!-- <strong>{{result.make}}</strong> -->
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td class="text-muted">Model</td>
+                    <td>
+                        <!-- <strong>{{result.model}}</strong> -->
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="text-muted">Body</td>
+                    <td>
+                        <!-- <strong>{{result.bodytype}}</strong> -->
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="text-muted">Manufactured</td>
+                    <td>
+                        <!-- <strong>{{result.yearofmanufacture}}</strong> -->
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="text-muted">Country</td>
+                    <td>
+                        <!-- <strong>{{result.country}}</strong> -->
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="text-muted">Fuel</td>
+                    <td>
+                        <!-- <strong>{{result.fueltype}}</strong> -->
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td class="text-muted">Engine(CC)</td>
+                    <td>
+                        <!-- <strong>{{result.rengine}}</strong> -->
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="text-muted">Price(TZS)</td>
+                    <td>
+                        <!-- <strong>{{result.price}}</strong> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="3" class="text-primary"><strong>TAX</strong></td>
+                    <td class="text-muted">Import Taxes(TZS)</td>
+                    <td>
+                        <!-- <strong>{{result.totalimporttaxes}}</strong> -->
+                    </td>
+                </tr>
+
+
+                <tr>
+
+                    <td class="text-muted">Vehicle Registration(TZS) </td>
+                    <td>
+                        <!-- <strong>{{result.vehicleregistrationfee}}</strong> -->
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td class="text-muted">Total Tax(TZS)</td>
+                    <td>
+                        <!-- <strong>{{result.totaltaxes}}</strong> -->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="text-primary"><strong>TOTAL</strong></td>
+                    <td colspan="2">
+                        <!-- <h2><strong>{{result.grandtotal}} TZS</strong></h2> -->
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script> -->
+</body>
+
+</html>

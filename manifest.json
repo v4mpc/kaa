@@ -1,20 +1,21 @@
 {
     "manifest_version": 2,
-    "name": "My Cool Extension",
+    "name": "Kaa",
     "version": "0.1",
+    "description": "An Extension that helps to Valuate Vehicles",
     "content_scripts": [
         {
             "matches": [
                 "<all_urls>"
             ],
             "js": [
-                "angularjs.min.js",
                 "content.js"
             ]
         }
     ],
     "browser_action": {
-        "default_icon": "icon.png"
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
     },
     "background": {
         "scripts": [
