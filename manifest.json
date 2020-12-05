@@ -4,12 +4,15 @@
     "version": "0.1",
     "description": "An Extension that helps to Valuate Vehicles",
     "permissions": [
-        "tabs"
+        "tabs",
+        "webNavigation",
+        "storage",
+        "http://127.0.0.1:8000/valuate"
     ],
     "content_scripts": [
         {
             "matches": [
-                "http://127.0.0.1/*"
+                "https://www.beforward.jp/*/*/*/id/*/"
             ],
             "js": [
                 "content.js"

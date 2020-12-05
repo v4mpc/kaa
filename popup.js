@@ -1,6 +1,9 @@
 var myApp = angular.module("my-app", []);
 
 myApp.controller("PopupCtrl", function ($scope, $http, $timeout) {
+
+
+
     console.log("Controller Initialized");
 
 
@@ -9,20 +12,46 @@ myApp.controller("PopupCtrl", function ($scope, $http, $timeout) {
 
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
         let url = tabs[0].url;
-        sendRequest(url)
+
+        chrome.storage.sync.get([url], function (result) {
+            if (result) {
+
+                console.log('got data locally')
+                setScopeResult(result[url])
+                sendRequest(url)
+            } else {
+                console.log("added event listener")
+                chrome.runtime.onMessage.addListener(
+                    function (request, sender, sendResponse) {
+                        if (request.message === "data_ready") {
+                            console.log('data_ready')
+                            chrome.storage.sync.get([url], function (result) {
+                                setScopeResult(result[url])
+
+
+                            })
+                        }
+                    }
+                );
+
+
+            }
+        });
+
+
 
 
     });
 
 
 
-    // $timeout(() => {
-    //     $scope.feedback = true
-    // }, 3000);
+
+
 
 
 
     function sendRequest(url) {
+
         $http({
             url: 'http://127.0.0.1:8000/valuate',
             method: "get",
@@ -53,9 +82,30 @@ myApp.controller("PopupCtrl", function ($scope, $http, $timeout) {
             },
                 function (response) { // optional
                     // failed
+                    console.log(response)
                     $scope.showSpinner = false
                     console.log("failure in getting response from backend API");
                 });
+    }
+
+
+    function setScopeResult(data) {
+
+        $scope.result = {
+            model: data.model,
+            make: data.make,
+            bodytype: data.bodytype,
+            yearofmanufacture: data.yearofmanufacture,
+            country: data.country,
+            fueltype: data.fueltype,
+            rengine: data.rengine,
+            price: data.price,
+            totalimporttaxes: data.totalimporttaxes,
+            vehicleregistrationfee: data.vehicleregistrationfee,
+            totaltaxes: data.totalimporttaxes,
+            grandtotal: data.grandtotal,
+        }
+        $scope.showSpinner = false
     }
 
 

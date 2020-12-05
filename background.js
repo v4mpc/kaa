@@ -7,5 +7,49 @@ chrome.browserAction.onClicked.addListener(function (tab) {
     });
 });
 
+chrome.webNavigation.onBeforeNavigate.addListener(sendRequest, {
+    url: [
+        { urlPrefix: 'https://www.beforward.jp', pathContains: 'id' },
 
-console.log('background started')
+    ]
+});
+
+function sendRequest(e) {
+    let data_url = e.url
+    let url = new URL('http://127.0.0.1:8000/valuate')
+    url.search = new URLSearchParams({
+        url: data_url,
+    })
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }).then(response => {
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json()
+    }).then(data => {
+        console.log(data)
+        console.log(data_url)
+
+        let store_object = {}
+        store_object[data_url] = data
+        chrome.storage.sync.set(store_object, function () {
+
+
+
+            chrome.runtime.sendMessage({ "message": "data_ready" })
+
+
+
+
+        });
+
+
+
+    })
+
+}

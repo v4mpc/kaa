@@ -7,3 +7,5 @@ chrome.runtime.onMessage.addListener(
         }
     }
 );
+
+// console.log('url matches send request to server')
